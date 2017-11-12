@@ -1,21 +1,20 @@
-from nltk.corpus import wordnet
-from nltk.tokenize import word_tokenize
-from nltk import ConditionalFreqDist, pos_tag, tokenize
+from nltk import ConditionalFreqDist, pos_tag, tokenize, data
 import nltk.data
 from re import sub
 
 def replaceCommon(text):
-    token_text = pos_tag(word_tokenize(text))
+    token_text = pos_tag(tokenize.word_tokenize(text))
     dist = ConditionalFreqDist((tag, word.lower()) for (word, tag) in token_text)
 
     # Move to another place
     # probably can get rid of the generator
     common_nouns = dist['NN'].most_common()
     common_verbs = dist['VBN'].most_common()
-    print(common_verbs)
+
     ## Replacing action going on
     text = sub(common_nouns[0][0], 'dogbreeder', text, 88, re.I);
     text = sub(common_nouns[1][0], 'cat therapist', text, 88, re.I);
+
     return text
 
 
