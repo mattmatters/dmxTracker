@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       #map {
+        height: 800px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <h3>DMX Tracker</h3>
+    <div id="map"></div>
+    <script>
+     var content = '<div id="content">'+
+                         '<img src="dmx-head.png">' +
+                         '<div id="siteNotice">'+
+                         '</div>'+
+                         '<h1 id="firstHeading" class="firstHeading">DMX Fights a Polar Bear</h1>'+
+                         '<div id="bodyContent">'+
+                         '<p><b>Dmx</b>, known advocate of <b>dog rights</b>, has been ' +
+                         'embroiled in politcal turmoil. ' +
+                         'His puppers have file suit, alleging that he has not pet them in five days.</p>'+
+                         '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+                         'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+                         '(last visited June 22, 2009).</p>'+
+                         '</div>'+
+                         '</div>';
+     function initMap() {
+         var uluru = {lat: -25.363, lng: 131.044};
+         var map = new google.maps.Map(document.getElementById('map'), {
+             zoom: 4,
+             center: uluru
+         });
+         var marker = new google.maps.Marker({
+             position: uluru,
+             icon: 'dmx-head-small.png',
+             title: 'DMX Fights a Polar Bear',
+             map: map
+         });
+         var infowindow = new google.maps.InfoWindow({
+             content
+         });
+
+         marker.addListener('click', function() {
+             infowindow.open(map, marker);
+         });
+     }
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsJtrgqrRemIcNk7opcnQNT6f6VajAEOM&callback=initMap">
+    </script>
+  </body>
+</html>
